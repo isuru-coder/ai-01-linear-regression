@@ -1,19 +1,25 @@
 # scripts/train_baseline.py
+import json
+import time
 from pathlib import Path
-import json, time
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.model_selection import train_test_split
+
 
 def find_data():
     # Prefer processed, fall back to raw
     for p in [Path("data/processed/salary.csv"), Path("data/raw/salary_data.csv")]:
         if p.exists():
             return p
-    raise FileNotFoundError("Put salary_data.csv in data/processed/ or data/raw/ with columns: years_experience,salary")
+    raise FileNotFoundError(
+        "Put salary_data.csv in data/processed/ or data/raw/ with columns: years_experience,salary"
+    )
+
 
 def main():
     data_path = find_data()
@@ -55,7 +61,9 @@ def main():
         json.dump(metrics, f, indent=2)
 
     # Plot best-fit line
-    x_line = np.linspace(df["years_experience"].min(), df["years_experience"].max(), 100).reshape(-1, 1)
+    x_line = np.linspace(
+        df["years_experience"].min(), df["years_experience"].max(), 100
+    ).reshape(-1, 1)
     y_line = model.predict(x_line)
 
     plt.figure()
@@ -68,6 +76,7 @@ def main():
     plt.savefig("reports/figures/line_fit.png", dpi=180)
 
     print(json.dumps(metrics, indent=2))
+
 
 if __name__ == "__main__":
     main()
