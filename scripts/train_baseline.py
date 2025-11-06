@@ -71,3 +71,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# {
+#   "mae": 1773.4501,
+#   "mse": 3555748.6926,
+#   "r2": 0.9901,
+#   "n_train": 18,
+#   "n_test": 5,
+#   "data_path": "data\\raw\\salary_data.csv",
+#   "timestamp": "2025-11-03T16:07:08"
+# }
