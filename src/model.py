@@ -1,7 +1,8 @@
+from typing import Any, Dict
+
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-from typing import Any, Dict
 
 
 def train_linear_regression(X_train, y_train) -> LinearRegression:
